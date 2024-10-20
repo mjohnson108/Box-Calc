@@ -181,7 +181,7 @@ sub pack_item {
     }
     my $fill_z = $self->fill_z;
     my $fill_y = $self->fill_y;
-    if ($item->y > $self->max_y - $fill_y + $self->rows->[-1]->fill_y # item would make the layer too wide
+    if ($item->y > sprintf("%.9f", $self->max_y - $fill_y + $self->rows->[-1]->fill_y) # item would make the layer too wide
         ) {
         $log->info($item->{name}.' would make the layer too wide, requesting new layer.');
         return 0;
@@ -194,7 +194,7 @@ sub pack_item {
         return 1;
     }
     else {
-        if ($item->y > $self->max_y - $self->fill_y) {
+        if ($item->y > sprintf("%.9f", $self->max_y - $self->fill_y)) {
             $log->info($item->{name}.' will not fit in a new row in this layer, requesting new layer.');
             return 0;
         }

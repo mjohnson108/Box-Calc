@@ -225,7 +225,7 @@ sub pack_item {
         return 0;
     }
     # item height > ( box height - box fill + the height of the current layer )
-    if ($item->z > $self->z - $self->fill_z + $self->layers->[-1]->fill_z) {
+    if ($item->z > sprintf("%.9f", $self->z - $self->fill_z + $self->layers->[-1]->fill_z)) {
         $log->info($item->{name}.' would make the layer too tall to fit in the box, requesting new box.');
         return 0;
     }
@@ -234,7 +234,7 @@ sub pack_item {
         return 1;
     }
     else {
-        if ($item->z > $self->z - $self->fill_z) {
+        if ($item->z > sprintf("%.9f", $self->z - $self->fill_z)) {
             $log->info($item->{name}.' is too big to create another layer in this box, requesting another box.');
             return 0;
         }

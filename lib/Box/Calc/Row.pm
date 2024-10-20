@@ -137,7 +137,7 @@ A L<Box::Calc::Item> instance.
 
 sub pack_item {
     my ($self, $item) = @_;
-    if ($item->x > $self->max_x - $self->fill_x) {
+    if ($item->x > sprintf("%.9f", $self->max_x - $self->fill_x)) {
         $log->info('No room in row for '.$item->{name}.', requesting new row.');
         return 0;
     }
